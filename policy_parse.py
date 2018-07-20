@@ -1,8 +1,8 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from urllib.parse import quote
 from time import *
 import datetime
+import requests
 import re
 
 
@@ -10,7 +10,7 @@ def Set_category(keyword):              #category 설정
     if keyword == "교육":
         category = 13820
     elif keyword == "교통":
-        category = 13820
+        category = 13819
     elif keyword == "일자리":
         category = 13823
     elif keyword == "환경":
@@ -27,24 +27,61 @@ def Set_category(keyword):              #category 설정
     return category
 
 
-def Seoul_parse(keyword,pageindex):
-    crwal_check = 1
-    data = {}
-    now = datetime.datetime.now()
+def Seoul_parse(keyword):
+    url_list = []
+    pageindex = 1
+    hangul = re.compile('[^ \u3131-\u3163\uac00-\ud7a3]+')
     category = Set_category(keyword)
+
+    url = "http://opengov.seoul.go.kr/"
 
     #driver = webdriver.Chrome('/Users/oonja/Downloads/chromedriver_win32/chromedriver.exe')
     driver = webdriver.PhantomJS('/Users/oonja/Downloads/phantomjs-2.1.1-windows/bin/phantomjs.exe')
-    url = ("http://opengov.seoul.go.kr/policy/clas/"+str(category)+"?field_policy_year_value=All"
-           "&search=&items_per_page=50&page="+str(pageindex)+"&policy_year=All&policy_done=All")
-    driver.implicitly_wait(0.1)
 
-    driver.get(url)
+    url2 = url + "/policy/clas/" + str(
+        category) + "?field_policy_year_value=All&search=&items_per_page=50&page=" + str(
+        pageindex) + "&policy_year=All&policy_done=All"
+
+    driver.get(url2)
     html = driver.page_source
-    soup = BeautifulSoup(html,'html.parser')
 
-    driver.find_element_by_id("")
-    print(soup)
+    soup = BeautifulSoup(html, 'html.parser')
+    title = soup.select(
+        "#content > div > div.view-empty > table > tbody > tr > td"
+    )
+    try:
+        error = str(title[0])[42:-5]                            #문구 슬라이싱
+    except:
+        error = "정상적"
+        pass
 
-Seoul_parse("교통",1)
+    if(error == "등록된 사업이 없습니다."):                   #등록된 사업이 없을 때 반복문 나가기
+        return 0
+    else:
+        first = soup.select(                                #시작
+            "#content > div > div.view-content > table > tbody > tr.odd.views-row-first > td.views-field.views-field-nothing-1 > p.title-ellipsis > a"
+        )
+        end = soup.select(                                  # 끝
+            "#content > div > div.view-content > table > tbody > tr.odd.views-row-last > td.views-field.views-field-nothing-1 > p.title-ellipsis > a"
+        )
+        url_list.append(url+first[0].get('href'))
+        url_list.append(url+end[0].get('href'))
+        for list_index in range(2,50):                      #나올 수 있는 최대값
+            try:
+                middle = soup.select("#content > div > div.view-content > table > tbody > tr:nth-of-type("+str(list_index)+") > td.views-field.views-field-nothing-1 > p.title-ellipsis > a")
+                url_list.append(url+middle[0].get('href'))
+            except:                                         #더이상 찾아올 데이터가 없음
+                break
+        pageindex += 1
+
+    for url in url_list:
+        driver.get(url)
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        contents = soup.select(
+            "#comm-view > div:nth-child(3) > div"
+        )
+
+
+print(Seoul_parse("교육"))
 
