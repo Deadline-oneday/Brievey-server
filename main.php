@@ -18,7 +18,7 @@
         <div class="inputcontainer">
            <p> <img src="assets/image/location.svg" style="display: inline;" width="5%"><b>서울특별시</b>에서의 Brief</p>
         </div>
-        <div id="slider">
+        <div id="slider" onclick="location.href='survey.php'">
             <figure>
             <img src="assets/image/slider_img_1.png">
             <img src="assets/image/slider_img_2.png">
@@ -27,8 +27,8 @@
         </div>
        
         <br>
-        <a class="btn" href="pointmall.html" style="float:left;">적립한 포인트<p class="num" style="font-size:8.5rem; margin-top:auto; margin-bottom: auto; margin-left:auto; margin-right:auto; font-family:Abel; padding:15% 0;">120</p></a>
-        <a class="btn" href="stats.html" style="float:right;">평가한 Brief<p class="num" style="font-size:8.5rem; margin-top:auto; margin-bottom: auto; margin-left:auto; margin-right:auto; font-family:Abel; padding:15% 0;">54</p></a>
+        <a class="btn" href="pointmall.php" style="float:left;">적립한 포인트<p class="num" style="font-size:8.5rem; margin-top:auto; margin-bottom: auto; margin-left:auto; margin-right:auto; font-family:Abel; padding:15% 0;">120</p></a>
+        <a class="btn" href="stats.php" style="float:right;">평가한 Brief<p class="num" style="font-size:8.5rem; margin-top:auto; margin-bottom: auto; margin-left:auto; margin-right:auto; font-family:Abel; padding:15% 0;">54</p></a>
 
     </div>
 

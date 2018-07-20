@@ -10,10 +10,11 @@
  $birthDay=1;
  $email=1;
  $sql = "insert into account_info (id, pwd, name,addr,sex,birthDay,email) values ('$id','$password','$name','$address','$sex',$birthDay,'$email')";
-echo $sql;
- if($con->query($sql)){
-  echo 'success inserting';
- }else{
-  echo 'fail to insert sql';
- }
+echo $sql; 
+if($con->query($sql)){
+    echo 'success inserting';
+       echo ("<script language=javascript>location.href='first_run.php';</script>");
+   }else{
+    echo 'fail to insert sql';
+   }
 ?>

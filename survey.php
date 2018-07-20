@@ -20,7 +20,7 @@
                 <tr>
                     <td> <img src="assets/image/no.png" alt="싫어요"> </td>
                     <td> <img src="assets/image/idk.png" alt="모르겠어요"></td>
-                    <td> <img src="assets/image/ok.png" alt="좋아요"> </td>
+                    <td> <img src="assets/image/ok.png" alt="좋아요" onclick="location.href='main.php'"> </td>
                 </tr>
             </table>
 
