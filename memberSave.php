@@ -9,12 +9,11 @@
  $sex=$_POST['sex'];
  $birthDay=$_POST['birthDay'];
  $email=$_POST['email'];
- $sql = "insert into account_info ('$id', '$pwd', '$name','$addr', '$sex', '$birthDay', '$email')";
-$sql = $sql. " values ('$id','$password','$name','$address','$sex','$birthDay','$email')";
+ $sql = "insert into account_info (id, pwd, name,addr,sex,birthDay,email) values ('$id','$password','$name','$address','$sex',$birthDay,'$email')";
 echo $sql;
  if($con->query($sql)){
   echo 'success inserting';
  }else{
   echo 'fail to insert sql';
  }
->
+?>

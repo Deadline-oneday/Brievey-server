@@ -6,7 +6,7 @@ if($_SESSION['id']==null) { // 로그인 하지 않았다면
 <center><br><br><br>
 <form name="login_form" action="logincheck.php" method="post"> 
    ID : <input type="text" name="id"><br> 
-   PW:<input type="password" name="pw"><br><br>
+   PW:<input type="password" name="pwd"><br><br>
    <input type="submit" name="login" value="Login"> 
 </form>
 	
