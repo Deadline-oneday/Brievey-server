@@ -19,26 +19,7 @@
    <td>Confirm Password</td>
    <td><input type="password" size="30" name="pwd2"></td>
   </tr>
-  <tr>
-   <td>name</td>
-   <td><input type="text" size="12" maxlength="10" name="name"></td>
-  </tr>
-  <tr>
-   <td>address</td>
-   <td><input type="text" size="40" name="addr"></td>
-  </tr>
-  <tr>
-   <td>sex</td>
-   <td><input type="text" size="6" maxlength="2" name="sex"></td>
-  </tr>
-  <tr>
-   <td>birth day</td>
-   <td><input type="text" size="6" maxlength="8" name="birthDay"></td>
-  </tr>
-  <tr>
-   <td>e-mail</td>
-   <td><input type="text" size="30" name="email"></td>
-  </tr>
+ 
  </table>
  <input type=submit value="submit"><input type=reset value="rewrite">
 </form>
