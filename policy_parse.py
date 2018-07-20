@@ -65,6 +65,7 @@ def Seoul_parse(keyword):
             "#content > div > div.view-content > table > tbody > tr.odd.views-row-last > td.views-field.views-field-nothing-1 > p.title-ellipsis > a"
         )
         url_list.append(url+first[0].get('href'))
+        print(end)
         url_list.append(url+end[0].get('href'))
         for list_index in range(2,50):                      #나올 수 있는 최대값
             try:
@@ -78,10 +79,15 @@ def Seoul_parse(keyword):
         driver.get(url)
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
-        contents = soup.select(
-            "#comm-view > div:nth-child(3) > div"
+        title = soup.select(
+            "#page-title"
         )
+        contents = soup.select(
+            "#comm-view > div:nth-of-type(3) > div"
+        )
+        print(title[0].text)
+        print(contents[0].text)
 
 
-print(Seoul_parse("교육"))
+print(Seoul_parse("교통"))
 
