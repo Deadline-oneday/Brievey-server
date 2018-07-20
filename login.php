@@ -31,7 +31,7 @@ if($_SESSION['id']==null) { // 로그인 하지 않았다면
             <a href="#" class="login" onclick="document.getElementById('lginform').submit();">로그인</a>
         </form>
        
-        <a class="register" href="signup.php">계정 만들기</a>
+        <a class="register" href="signUp.php">계정 만들기</a>
 
         <a class="forgetpass" href="#">비밀번호를 잊어버리셨나요?</a>
 
