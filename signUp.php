@@ -61,7 +61,7 @@
             <input type="password" name="pwd2">
         </div>
 
-        <a href="#" class="login" onclick="document.getElementById('lginform').submit();">회원 가입</a>
+        <a href="#" class="login" onclick="document.getElementById('rgstform').submit();">회원 가입</a>
         </form>
 
     </div>
