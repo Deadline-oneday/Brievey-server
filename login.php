@@ -4,11 +4,15 @@ if($_SESSION['id']==null) { // 로그인 하지 않았다면
 ?>
 
 <center><br><br><br>
-<form name="login_form" action="login_check.php" method="post"> 
+<form name="login_form" action="logincheck.php" method="post"> 
    ID : <input type="text" name="id"><br> 
    PW:<input type="password" name="pw"><br><br>
    <input type="submit" name="login" value="Login"> 
 </form>
+	
+<form name="register" action="signUp.php" method="post">
+	<input type="submit" name="register" value="register">
+	</form>
 </center>
 
 <?php
@@ -18,4 +22,4 @@ if($_SESSION['id']==null) { // 로그인 하지 않았다면
    echo "&nbsp;<a href='logout.php'><input type='button' value='Logout'></a>";
    echo "</center>";
 }
-?>s
+?>
