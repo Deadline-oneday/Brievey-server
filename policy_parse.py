@@ -1,28 +1,27 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import re
+import re,json
 
 
 def Set_category(keyword):              #category 설정
-    if keyword == "교육":
+    if keyword == "Edu":
         category = 13820
-    elif keyword == "교통":
+    elif keyword == "Trans":
         category = 13819
-    elif keyword == "일자리":
+    elif keyword == "Jobs":
         category = 13823
-    elif keyword == "환경":
+    elif keyword == "Environ":
         category = 13816
-    elif keyword == "녹지":
+    elif keyword == "Green":
         category = 13824
-    elif keyword == "시민복지":
+    elif keyword == "Welfare":
         category = 13812
-    elif keyword == "도시안정":
+    elif keyword == "Wonsoon":
         category = 13815
-    elif keyword == "문화관광":
+    elif keyword == "Tourism":
         category = 13817
 
     return category
-
 
 def Seoul_parse(keyword):
     url_list = []
@@ -36,7 +35,7 @@ def Seoul_parse(keyword):
     driver = webdriver.PhantomJS('/Users/oonja/Downloads/phantomjs-2.1.1-windows/bin/phantomjs.exe')
 
     url2 = url + "/policy/clas/" + str(
-        category) + "?field_policy_year_value=All&search=&items_per_page=50&page=" + str(
+        category) + "?field_policy_year_value=2017&search=&items_per_page=50&page=" + str(
         pageindex) + "&policy_year=All&policy_done=All"
 
     driver.get(url2)
@@ -68,6 +67,10 @@ def Seoul_parse(keyword):
                 break
         pageindex += 1
 
+    data = {}
+    i=1
+    r = re.compile("\xa0")
+    print(url_list)
     for url in url_list:
         driver.get(url)
         html = driver.page_source
@@ -78,9 +81,12 @@ def Seoul_parse(keyword):
         contents = soup.select(
             "#comm-view > div:nth-of-type(3) > div"
         )
-        print(title[0].text)
-        print(contents[0].text)
+        data[keyword+"@"+str(i)] = title[0].text + r.sub('*',contents[0].text)
+        i+=1
 
+    str_data = json.dumps(data,ensure_ascii=False)                  #Json to string convert
+    print(str_data)
+    with open("data/"+keyword+".txt", 'w', encoding='UTF-8', newline='') as f:
+        f.write(str_data)
 
-print(Seoul_parse("교통"))
 
