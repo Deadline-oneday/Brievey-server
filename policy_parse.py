@@ -1,8 +1,5 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from time import *
-import datetime
-import requests
 import re
 
 
@@ -61,12 +58,8 @@ def Seoul_parse(keyword):
         first = soup.select(                                #시작
             "#content > div > div.view-content > table > tbody > tr.odd.views-row-first > td.views-field.views-field-nothing-1 > p.title-ellipsis > a"
         )
-        end = soup.select(                                  # 끝
-            "#content > div > div.view-content > table > tbody > tr.odd.views-row-last > td.views-field.views-field-nothing-1 > p.title-ellipsis > a"
-        )
+
         url_list.append(url+first[0].get('href'))
-        print(end)
-        url_list.append(url+end[0].get('href'))
         for list_index in range(2,50):                      #나올 수 있는 최대값
             try:
                 middle = soup.select("#content > div > div.view-content > table > tbody > tr:nth-of-type("+str(list_index)+") > td.views-field.views-field-nothing-1 > p.title-ellipsis > a")
