@@ -1,6 +1,4 @@
-<?php
-	require_once("../dbconfig.php");
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +33,7 @@
 				</table>
 				<div class="btnSet">
 					<button type="submit" class="btnSubmit btn">작성</button>
-					<a href="./board/index.php" class="btnList btn">목록</a>
+					<a href="boindex.php" class="btnList btn">목록</a>
 				</div>
 			</form>
 		</div>
