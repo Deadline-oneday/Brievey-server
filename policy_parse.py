@@ -32,8 +32,8 @@ def Seoul_parse(keyword):
     url = "http://opengov.seoul.go.kr/"
 
     #driver = webdriver.Chrome('/Users/oonja/Downloads/chromedriver_win32/chromedriver.exe')
-    driver = webdriver.PhantomJS('/Users/oonja/Downloads/phantomjs-2.1.1-windows/bin/phantomjs.exe')
-
+    #driver = webdriver.PhantomJS('/Users/oonja/Downloads/phantomjs-2.1.1-windows/bin/phantomjs.exe')
+    driver = webdriver.PhantomJS('/root/node_modules/phantomjs/bin/phantomjs')
     url2 = url + "/policy/clas/" + str(
         category) + "?field_policy_year_value=2017&search=&items_per_page=50&page=" + str(
         pageindex) + "&policy_year=All&policy_done=All"
@@ -86,7 +86,6 @@ def Seoul_parse(keyword):
 
     str_data = json.dumps(data,ensure_ascii=False)                  #Json to string convert
     print(str_data)
-    with open("data/"+keyword+".txt", 'w', encoding='UTF-8', newline='') as f:
+    with open("data/"+keyword+".db", 'w', encoding='UTF-8', newline='') as f:
         f.write(str_data)
-
 
