@@ -33,8 +33,8 @@ def Seoul_parse(keyword,pageindex):
     now = datetime.datetime.now()
     category = Set_category(keyword)
 
-    driver = webdriver.Chrome('/Users/oonja/Downloads/chromedriver_win32/chromedriver.exe')
-
+    #driver = webdriver.Chrome('/Users/oonja/Downloads/chromedriver_win32/chromedriver.exe')
+    driver = webdriver.PhantomJS('/Users/oonja/Downloads/phantomjs-2.1.1-windows/bin/phantomjs.exe')
     url = ("http://opengov.seoul.go.kr/policy/clas/"+str(category)+"?field_policy_year_value=All"
            "&search=&items_per_page=50&page="+str(pageindex)+"&policy_year=All&policy_done=All")
     driver.implicitly_wait(0.1)
@@ -43,8 +43,8 @@ def Seoul_parse(keyword,pageindex):
     html = driver.page_source
     soup = BeautifulSoup(html,'html.parser')
 
+    driver.find_element_by_id("")
     print(soup)
-    sleep(5)
 
 Seoul_parse("교통",1)
 
